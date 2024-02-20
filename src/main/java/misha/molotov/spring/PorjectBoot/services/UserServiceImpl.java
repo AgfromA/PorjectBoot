@@ -1,10 +1,10 @@
-package misha.molotov.spring.PorjectBoot.service;
+package misha.molotov.spring.PorjectBoot.services;
 
 import java.util.List;
 
 
-import misha.molotov.spring.PorjectBoot.dao.UserDao;
-import misha.molotov.spring.PorjectBoot.model.User;
+import misha.molotov.spring.PorjectBoot.daos.UserDao;
+import misha.molotov.spring.PorjectBoot.models.User;
 import org.springframework.stereotype.Service;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,10 +17,11 @@ public class UserServiceImpl implements UserService {
 
 
     @Autowired
-    public void UserServicelmpl(UserDao userDao) {
+    public final void  UserServicelmpl(UserDao userDao) {
 
         this.userDao = userDao;
     }
+
     @Override
     public List<User> getAllUsers() {
         return userDao.getAllUsers();

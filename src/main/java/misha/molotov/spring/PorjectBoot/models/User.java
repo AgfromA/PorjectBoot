@@ -1,9 +1,13 @@
-package misha.molotov.spring.PorjectBoot.model;
+package misha.molotov.spring.PorjectBoot.models;
 
 
 
-
-import jakarta.persistence.*;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Table;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.Id;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
@@ -38,9 +42,6 @@ public class User {
         this.lastName = lastName;
         this.email = email;
     }
-
-
-
 
 
     public String getName() {

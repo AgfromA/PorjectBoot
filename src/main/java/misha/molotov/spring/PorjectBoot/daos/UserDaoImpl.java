@@ -1,9 +1,9 @@
-package misha.molotov.spring.PorjectBoot.dao;
+package misha.molotov.spring.PorjectBoot.daos;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.persistence.PersistenceContext;
-import misha.molotov.spring.PorjectBoot.model.User;
+import misha.molotov.spring.PorjectBoot.models.User;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -24,9 +24,9 @@ public class UserDaoImpl implements UserDao {
         User user = entityManager.find(User.class, id);
         if (user == null) {
             throw new EntityNotFoundException("Пользователь с id " + id + " не найден");
-        } else {
-            return user;
         }
+            return user;
+
     }
 
     @Override
@@ -39,10 +39,10 @@ public class UserDaoImpl implements UserDao {
         User existingUser = entityManager.find(User.class, id);
         if (existingUser == null) {
             throw new EntityNotFoundException("Пользователь с id " + id + " не найден");
-        } else {
+        }
             entityManager.merge(updateUser);
             entityManager.flush();
-        }
+
     }
 
     @Override
@@ -50,8 +50,8 @@ public class UserDaoImpl implements UserDao {
         User user = entityManager.find(User.class, id);
         if (user == null) {
             throw new EntityNotFoundException("Пользователь с id " + id + " не найден");
-        } else {
-            entityManager.remove(user);
         }
+            entityManager.remove(user);
+
     }
 }

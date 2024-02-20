@@ -1,7 +1,7 @@
-package misha.molotov.spring.PorjectBoot.dao;
+package misha.molotov.spring.PorjectBoot.daos;
 
 
-import misha.molotov.spring.PorjectBoot.model.User;
+import misha.molotov.spring.PorjectBoot.models.User;
 
 import java.util.List;
 

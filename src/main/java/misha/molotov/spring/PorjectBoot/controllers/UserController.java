@@ -1,16 +1,17 @@
 package misha.molotov.spring.PorjectBoot.controllers;
 
 import jakarta.validation.Valid;
-import misha.molotov.spring.PorjectBoot.model.User;
-import misha.molotov.spring.PorjectBoot.service.UserService;
+import misha.molotov.spring.PorjectBoot.models.User;
+import misha.molotov.spring.PorjectBoot.services.UserService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.*;
-
-
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 
 @Controller
@@ -23,7 +24,7 @@ public class UserController {
         this.userService = userService;
     }
 
-    @GetMapping()
+    @GetMapping
     public String index(Model model) {
         model.addAttribute("people", userService.getAllUsers());
         return "/index"; // Изменен путь к шаблону
@@ -41,14 +42,14 @@ public class UserController {
         return "/new";
     }
 
-    @PostMapping()
+    @PostMapping
     public String create(@ModelAttribute("users") @Valid User user, BindingResult bindingResult) {
-        if (bindingResult.hasErrors()) {
+        if (bindingResult.hasErrors())
             return "/new";
-        } else {
-            userService.addUser(user);
-            return "redirect:/people";
-        }
+
+        userService.addUser(user);
+        return "redirect:/people";
+
     }
 
     @GetMapping("/edit")
@@ -60,12 +61,11 @@ public class UserController {
     @PostMapping("/update")
     public String update(@ModelAttribute("users") @Valid User user,
                          BindingResult bindingResult, @RequestParam("id") Integer id) {
-        if (bindingResult.hasErrors()){
+        if (bindingResult.hasErrors())
             return "/edit"; // Изменен путь к шаблону
-        }else {
-            userService.updateUser(id, user);
-            return "redirect:/people";
-        }
+        userService.updateUser(id, user);
+        return "redirect:/people";
+
     }
 
     @GetMapping("/removeUser")
